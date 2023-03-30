@@ -1,7 +1,6 @@
 # import snscrape.modules.twitter as sntwitter
 # import pandas as pd
-from flask import Blueprint, request
-from flask import jsonify
+from flask import Blueprint, request, jsonify
 # import instaloader
 from datetime import datetime
 from itertools import dropwhile, takewhile
@@ -44,8 +43,12 @@ api = Blueprint('api', __name__)
 #     # tweets_df2 = pd.DataFrame(tweets_list2, columns=['Datetime', 'Tweet Id', 'Text', 'Username'])
 #     return jsonify(tweets_list2)
 
+@api.route('/')
+def test():
+    return "Sentimetric ready for analyze"
+
 @api.route('/predict', methods=['POST'])
-def main():
+def predicts():
     data = json.loads(request.data)
     result = []
     try:
@@ -73,4 +76,15 @@ def main():
         "predicted" : len(result),
         "message" : "Success Predict Sentiment"
     }
+    return jsonify(data)
+
+@api.route('/test-predict', methods=['POST'])
+def main():
+    data = json.loads(request.data)
+    label, score = predict.main(data["text"])
+    data = {
+        'label': label,
+        'score': score
+    }
+
     return jsonify(data)
