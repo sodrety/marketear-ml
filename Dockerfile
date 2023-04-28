@@ -1,28 +1,19 @@
+# start by pulling the python image
 FROM python:3.9
-#FROM python:3.10
-RUN apt-get update
-RUN apt-get  install -y  libgirepository1.0-dev
-#RUN apt update && \
-#    apt-get install -y openjdk-11-jdk && \
-#    apt-get install -y ant && \
-#    apt-get clean;
 
-# Set JAVA_HOME
-#ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/
-#RUN export JAVA_HOME
+# copy the requirements file into the image
+COPY ./requirements.txt /app/requirements.txt
 
-COPY . /app
+# switch working directory
 WORKDIR /app
-#RUN pip3 --version
-RUN python -m pip install --upgrade pip
 
-RUN pip install mysql-connector-python
-RUN pip install cython
-RUN pip install pyjnius
-RUN pip install pickle5
-RUN pip install pygobject PyGObject
-#RUN pip install truststore
-
-RUN python --version
+# install the dependencies and packages in the requirements file
 RUN pip install -r requirements.txt
-CMD [ "python", "app.py"] 
+
+# copy every content from the local file to the image
+COPY . /app
+
+# configure the container to run in an executed manner
+ENTRYPOINT [ "python" ]
+
+CMD ["app.py" ]
