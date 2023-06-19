@@ -15,6 +15,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
+from module.gpt.gpt import sentiment
+
 headers = {
     'origin': 'https://www.tokopedia.com',
     'accept-encoding': 'gzip, deflate, br',
@@ -57,12 +59,6 @@ def test():
 def predicts():
     data = json.loads(request.data)
     result = []
-    # db = ""
-    # try:
-    # db = connect(host="localhost",
-    #             user="root",
-    #             passwd="",
-    #             db="marketear")
     db = psycopg2.connect(database="marketear-dev",
                         host="localhost",
                         user="sail",
@@ -73,12 +69,14 @@ def predicts():
 
     for x in data:
         # predict
-        label, score = predict.main(x["text"])
+        # label, score = predict.main(x["text"])
+        sentiments, emotion = sentiment(data["text"])
         result.append({
-            'label': label,
-            'score': score
+            'label': sentiments,
+            'score': emotion,
+            'emotion': emotion
         })
-        update = "update intents set sentiment = '{}' , score = '{}' where id = {}".format(label,score,x["id"])
+        update = "update intents set sentiment = '{}' where id = {}".format(sentiments,x["id"])
         cursor = db.cursor()
         cursor.execute(update)
         db.commit()
@@ -93,10 +91,13 @@ def predicts():
 @api.route('/test-predict', methods=['POST'])
 def main():
     data = json.loads(request.data)
-    label, score = predict.main(data["text"])
+    # label, score = predict.main(data["text"])
+    sentiments, emotion = sentiment(data["text"])
+    # return sentiments
     data = {
-        'label': label,
-        'score': score
+        'label': sentiments,
+        'emotion': emotion,
+        'score': emotion
     }
 
     return jsonify(data)
