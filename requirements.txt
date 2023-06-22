@@ -35,8 +35,8 @@ sortedcontainers==2.4.0
 soupsieve==2.4
 sympy==1.11.1
 tokenizers==0.13.2
-torch==2.0.0
-torchvision==0.15.1
+# torch==2.0.0
+# torchvision==0.15.1
 tqdm==4.65.0
 transformers==4.27.4
 trio==0.22.0
