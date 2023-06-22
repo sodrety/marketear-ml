@@ -1,16 +1,16 @@
 
 from flask import Blueprint, request, jsonify
 # import instaloader
-from datetime import datetime
-from itertools import dropwhile, takewhile
-import requests
+# from datetime import datetime
+# from itertools import dropwhile, takewhile
+# import requests
 
 import json
-from main import predict
-from mysql.connector import connect, Error
+# from main import predict
+# from mysql.connector import connect, Error
 import psycopg2
-from module.tokopedia.tokopedia import Tokopedia
-from bs4 import BeautifulSoup
+# from module.tokopedia.tokopedia import Tokopedia
+# from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
