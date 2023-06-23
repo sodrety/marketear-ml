@@ -7,7 +7,7 @@ import json
 import time
 
 from module.gpt.gpt import sentiment
-from module.twitter.main import twitter
+# from module.twitter.main import twitter
 
 headers = {
     'origin': 'https://www.tokopedia.com',
@@ -19,9 +19,9 @@ headers = {
 
 api = Blueprint('api', __name__)
 
-@api.route('/twitter', methods=['POST'])
-def twitter():
-    return twitter()
+# @api.route('/twitter', methods=['POST'])
+# def twitter():
+#     return twitter()
 
 @api.route('/')
 def test():
