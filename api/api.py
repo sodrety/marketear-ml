@@ -1,21 +1,13 @@
 
 from flask import Blueprint, request, jsonify
-# import instaloader
-# from datetime import datetime
-# from itertools import dropwhile, takewhile
-# import requests
-
 import json
-# from main import predict
-# from mysql.connector import connect, Error
-import psycopg2
-# from module.tokopedia.tokopedia import Tokopedia
-# from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+# import psycopg2
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
 import time
 
 from module.gpt.gpt import sentiment
+from module.twitter.main import twitter
 
 headers = {
     'origin': 'https://www.tokopedia.com',
@@ -28,28 +20,8 @@ headers = {
 api = Blueprint('api', __name__)
 
 @api.route('/twitter', methods=['POST'])
-# def twitter():
-#     param = request.get_json()
-#     if param['exclude']:
-#         param['exclude'] = param['exclude'].split(',')
-
-#     # return param['exclude']
-#     # Creating list to append tweet data to
-#     tweets_list2 = []
-
-#     # Using TwitterSearchScraper to scrape data and append tweets to list
-#     # for i,tweet in enumerate(sntwitter.TwitterSearchScraper('pisang goreng since:2022-12-01 until:2022-12-31').get_items()):
-#     for i,tweet in enumerate(sntwitter.TwitterSearchScraper('{} since:{} until:{}'.format(param['query'],param['start'],param['end']), None, True).get_items()):
-#         if i>param['limit']:
-#             break
-#         if any(twt in tweet.content.lower() for twt in param['exclude']):
-#             print("exclude")
-#         else:
-#             tweets_list2.append([tweet.date, tweet.id, tweet.content, tweet.user.username])
-        
-#     # Creating a dataframe from the tweets list above
-#     # tweets_df2 = pd.DataFrame(tweets_list2, columns=['Datetime', 'Tweet Id', 'Text', 'Username'])
-#     return jsonify(tweets_list2)
+def twitter():
+    return twitter()
 
 @api.route('/')
 def test():

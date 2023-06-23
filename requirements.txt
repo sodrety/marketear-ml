@@ -48,3 +48,5 @@ virtualenv-clone==0.5.7
 Werkzeug==2.2.3
 wsproto==1.2.0
 openapi==1.1.0
+tweepy==4.14.0
+python_dotenv==1.0.0
