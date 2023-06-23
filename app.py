@@ -1,9 +1,9 @@
 from flask import Flask
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from api.api import api
 from logging import FileHandler,WARNING
 
-# load_dotenv()
+load_dotenv()
 
 app = Flask(__name__)
 app.register_blueprint(api, url_prefix='/api')

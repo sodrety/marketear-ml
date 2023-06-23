@@ -1,6 +1,7 @@
 import openai
 import json
-openai.api_key = "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"
+import os
+openai.api_key = os.environ.get("GPT_KEY")
 
 
 
