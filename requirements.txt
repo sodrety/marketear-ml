@@ -47,5 +47,5 @@ virtualenv==20.21.0
 virtualenv-clone==0.5.7
 Werkzeug==2.2.3
 wsproto==1.2.0
-openai==1.1.0
+openai==0.27.8
 python_dotenv==1.0.0
