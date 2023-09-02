@@ -10,7 +10,7 @@ def sentiment(prompt):
 
 Text: {prompt}"""
     summary = openai.Completion.create(
-            model="text-davinci-003", 
+            model="davinci:ft-personal-2023-07-16-09-53-16", 
             prompt=augmented_prompt,
             # temperature=.5,
             max_tokens=1000,
